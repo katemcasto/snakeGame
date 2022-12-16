@@ -22,6 +22,19 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                snake.yDirection = 1
+                snake.xDirection = 0
+            elif event.key == pygame.K_UP:
+                snake.yDirection = -1
+                snake.xDirection = 0
+            elif event.key == pygame.K_RIGHT:
+                snake.yDirection = 0
+                snake.xDirection = 1
+            elif event.key == pygame.K_LEFT:
+                snake.yDirection = 0
+                snake.xDirection = -1              
     
     snake.update()
 
