@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+from apple import Apple
 from block import BLOCK_SIZE
 from screen import SH, SW, Screen
 from snake import Snake
@@ -16,6 +17,8 @@ clock = pygame.time.Clock()
 screen.drawGrid(surface)
 
 snake = Snake()
+
+apple = Apple()
 
 while True: 
     for event in pygame.event.get():
@@ -39,6 +42,8 @@ while True:
     snake.update()
 
     screen.reset(surface, 'black')
+
+    apple.update(surface)
 
     snake.drawSnake(surface)   
 
