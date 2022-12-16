@@ -9,16 +9,11 @@ pygame.init()
 
 FONT = pygame.font.get_default_font()
 
-surface = pygame.display.set_mode((800, 800))
+screen = Screen()
+surface = screen.getSurface()
 clock = pygame.time.Clock()
 
-def drawGrid():
-    for x in range(0, SW, BLOCK_SIZE):
-        for y in range(0, SH, BLOCK_SIZE):
-            rect = pygame.Rect(x, y, BLOCK_SIZE, BLOCK_SIZE)
-            pygame.draw.rect(surface, "#3c3c3b", rect, 1)
-
-drawGrid()
+screen.drawGrid(surface)
 
 snake = Snake()
 
@@ -27,10 +22,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+    
+    snake.update()
 
-    pygame.draw.rect(surface, "green", snake.head[0])
-    for square in snake.body:
-        pygame.draw.rect(surface, "green", square)      
+    screen.reset(surface, 'black')
+
+    snake.drawSnake(surface)   
 
     pygame.display.update()
     clock.tick(10)
