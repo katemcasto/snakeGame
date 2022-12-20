@@ -39,13 +39,20 @@ while True:
                 snake.yDirection = 0
                 snake.xDirection = -1              
     
-    snake.update()
+    if snake.update():
+        apple = Apple()
 
     screen.reset(surface, 'black')
 
     apple.update(surface)
 
-    snake.drawSnake(surface)   
+    pygame.draw.rect(surface, "green", snake.head)
+    for square in snake.body:
+        pygame.draw.rect(surface, "green", square) 
+
+    if snake.head.x == apple.x and snake.head.y == apple.y:
+        snake.body.append(pygame.Rect(square.x, square.y, BLOCK_SIZE, BLOCK_SIZE))
+        apple = Apple()
 
     pygame.display.update()
     clock.tick(10)
